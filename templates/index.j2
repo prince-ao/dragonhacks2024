@@ -9,34 +9,20 @@
     <script src="/static/js/audio.js"></script>
     <script src="/static/js/script.js"></script>
     <style>
-        body { 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            background-color: #f3f4f6; /* light gray background */
-            margin: 0; /* remove default margin */
-        }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
+
         .button-container {
             position: absolute;
             top: 20px; /* adjust top position as needed */
             right: 20px; /* align to the right */
-            z-index: 10;
+            z-index: 20;
         }
         .record-button {
             position: absolute;
             top: 60px; /* adjust top position as needed */
             right: 20px; /* align to the right */
-            z-index: 10;
+            z-index: 100;
         }
+        
         .container {
             width: 70%; /* adjust width as needed */
             max-width: 600px; /* set max-width for responsiveness */
@@ -45,35 +31,24 @@
             padding: 20px; /* add padding for content */
             border-radius: 10px; /* rounded corners */
             margin-top: 20px; /* space between buttons and container */
-        }
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 225px; /* Adjust size as needed */
-            height: auto;
+            z-index: 100x
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
-    <img src="static/images/logo.png" alt="Logo" class="logo">
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10" style="width: 225px; height: auto;">
     
     <!-- Login/Signup button -->
     <div class="button-container">
         <a href="{{ url_for('login') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
     </div>
 
-    <!-- Record button -->
-    <div class="record-button">
-        <a href="{{ url_for('record') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Record</a>
-    </div>
-
-    <!-- Large white box container -->
     <div class="container">
-        <!-- Your content here -->
-        <canvas id="particleCanvas"></canvas>
-        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
+        <canvas id="particleCanvas" class="absolute top-0 left-0 pointer-events-none z-0"></canvas>
+        <div class="button-container">
+            <a href="login" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
+        <button id="playPauseBtn" onclick="togglePlayPause()" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
             <i class="fas fa-play"></i>
         </button>
     </div>
