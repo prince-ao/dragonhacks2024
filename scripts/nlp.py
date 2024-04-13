@@ -7,8 +7,9 @@ from embedchain import App
 warnings.filterwarnings('ignore')
         
 
-def convert_audio_to_text(model, filepath):
-    result = model.transcribe(filepath, temperature=0., fp16=False)
+def convert_audio_to_text(audio_file):
+    model = whisper.load_model("tiny")
+    result = model.transcribe(audio_file, temperature=0., fp16=False)
     return result['text']
 
 def summarize_text(text):
@@ -34,15 +35,12 @@ def summarize_text(text):
         }
     })
     
-    instruction = """Task: Analyze the input text and idnetify different topics being discussed. For each topic generate a summary. Generate the summaries as bullet points. Generate atleast 5 bullet points and atmax 20 bullet points for each summary."""
+    instruction = """
+        Task: Analyze the input text and identify different topics being discussed. For each topic generate a summary. Generate the summaries as bullet points for each topic. 
+        Generate atleast 5 bullet points and atmax 20 bullet points for each topic summary. 
+        Provide the result in the following format: Topic\n - bullet point1\n -bullet point2\n"""
     prompt = f'{instruction}\n + Text: {text}'
     answer= app.chat(prompt)
-    bullet_points = answer.split('Answer')[-1].split('\n')
+    bullet_points = answer.split('Answer')[-1]
+    app.delete_session_chat_history()
     return bullet_points
-
-
-
-if __name__ == '__main__':
-    model = whisper.load_model("tiny")
-    text = convert_audio_to_text(model, 'harvard.wav')
-    print(text)

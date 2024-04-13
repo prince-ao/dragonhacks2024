@@ -11,6 +11,7 @@ transformers = "*"
 embedchain = "*"
 langchain = "*"
 sentence-transformers = "*"
+openai = "*"
 
 [dev-packages]
 ipykernel = "*"
