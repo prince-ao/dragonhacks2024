@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Hear2Learn - Your Auditory AI Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <header class="bg-blue-600 text-white text-center py-8 shadow-md">
+        <h1 class="text-4xl font-extrabold tracking-tight">Welcome to Hear2Learn</h1>
+    </header>
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
+        <p class="my-6 text-lg leading-relaxed">An accessible auditory AI companion that transforms the way you engage with lectures. Hear2Learn not only records lectures in their entirety but also employs Natural Language Processing to condense content and craft questions and flashcards tailored to your learning needs. Embrace a revolutionized learning experience with Hear2Learn — where efficiency meets efficacy.</p>
+        
+        <p class="my-6 text-lg leading-relaxed">Powered by Google Cloud API, Hear2Learn offers real-time listening and recording, complemented by an audio file backup. Questions are generated through two innovative methods: NLP analysis for core topics combined with web scraping for problem-solving, and AI integration with ChatGPT for quick, efficient question generation — with safeguards against inaccuracies.</p>
+
+        <p class="my-6 text-lg leading-relaxed">Flashcards are effortlessly formatted in JSON for simplicity and effectiveness, akin to popular study tools like Quizlet. Lectures are automatically sectioned by date and time, with customization options available for personal titles.</p>
+
+        <p class="my-6 text-lg leading-relaxed">Discover the collaborative edge with account linking for classroom environments, paving the way for potential professor supervision. Plus, with translation features, Hear2Learn is an ally for non-native speakers seeking comprehensive learning support.</p>
+
+        <section class="cta text-center mt-10">
+            <a href="{{ url_for('record') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Start Recording</a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-6 mt-12">
+        <p>&copy; {{ current_year }} Hear2Learn. All rights reserved.</p>
+    </footer>
+</body>
+</html>

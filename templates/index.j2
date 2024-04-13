@@ -25,7 +25,7 @@
 <body class="bg-gray-100">
 <canvas id="particleCanvas"></canvas>
 <div class="button-container">
-  <a href="login" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
+  <a href="{{ url_for('login') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
   <button id="playPauseBtn" onclick="togglePlayPause()" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
     <i class="fas fa-play"></i>
 </button>
