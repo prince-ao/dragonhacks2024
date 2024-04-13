@@ -11,6 +11,10 @@ python-decouple = "*"
 reloadium = "*"
 speechrecognition = "*"
 pydub = "*"
+torch = "*"
+transformers = "*"
+openai-whisper = "*"
+openai = "*"
 
 [dev-packages]
 
