@@ -10,15 +10,15 @@ class Particle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.size = Math.random() * 8 + 3; // Decreased size range to 3-11
-    this.speedX = Math.random() * 4 - 2; // Decreased speed for slower movement
-    this.speedY = Math.random() * 4 - 2; // Decreased speed for slower movement
+    this.size = Math.random() * 8 + 3; // Size range of 3-11
+    this.speedX = Math.random() * 4 - 2; // Slower movement speed
+    this.speedY = Math.random() * 4 - 2;
     this.color = `rgba(255, 0, 0, ${Math.random().toFixed(2)})`;
   }
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-    if (this.size > 0.3) this.size -= 0.2; // Slower size reduction
+    if (this.size > 0.3) this.size -= 0.2;
   }
   draw() {
     ctx.fillStyle = this.color;
@@ -39,9 +39,12 @@ function handleParticles() {
 }
 
 function emitParticles() {
-  const x = canvas.width / 2;
-  const y = canvas.height / 2;
-  for (let i = 0; i < 25; i++) { // Slightly reduced the number of particles emitted per interval
+  const btn = document.getElementById('playPauseBtn');
+  const rect = btn.getBoundingClientRect(); // Get the position and dimensions of the button
+  const x = rect.left + rect.width / 2 + window.scrollX; // Center X of the button
+  const y = rect.top + rect.height / 2 + window.scrollY; // Center Y of the button
+
+  for (let i = 0; i < 25; i++) {
     particles.push(new Particle(x, y));
   }
 }
@@ -59,7 +62,7 @@ function togglePlayPause() {
     icon.classList.remove('fa-play');
     icon.classList.add('fa-pause');
     console.log('Playing');
-    particleInterval = setInterval(emitParticles, 70); // Slightly less frequent emission for a slower effect
+    particleInterval = setInterval(emitParticles, 70);
   }
   isPlaying = !isPlaying;
 }
