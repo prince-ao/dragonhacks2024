@@ -5,11 +5,25 @@
     <title>Hear2Learn - Your Auditory AI Companion</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Remove top bar */
+        header {
+            display: none;
+        }
+        /* Add logo to top left corner */
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 225px; /* Adjust size as needed */
+            height: auto;
+        }
+    </style>
 </head>
 <body class="bg-gray-50 text-gray-900 font-sans">
-    <header class="bg-blue-600 text-white text-center py-8 shadow-md">
-        <h1 class="text-4xl font-extrabold tracking-tight">Welcome to Hear2Learn</h1>
-    </header>
+    <!-- Logo -->
+    <img src="static/images/logo.png" alt="Hear2Learn Logo" class="logo">
+    
     <main class="container mx-auto px-4 py-12 max-w-4xl">
         <p class="my-6 text-lg leading-relaxed">An accessible auditory AI companion that transforms the way you engage with lectures. Hear2Learn not only records lectures in their entirety but also employs Natural Language Processing to condense content and craft questions and flashcards tailored to your learning needs. Embrace a revolutionized learning experience with Hear2Learn — where efficiency meets efficacy.</p>
         

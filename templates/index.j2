@@ -1,33 +1,79 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Music Play Pause Button</title>
-<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="/static/js/audio.js" defer></script>
-<script src="/static/js/script.js" defer></script>
-<style>
-  body { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
-  canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    pointer-events: none;
-  }
-  .button-container {
-    position: relative;
-    z-index: 10;
-  }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Play Pause Button</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body { 
+            position: relative; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center; 
+            justify-content: center; 
+            height: 100vh; 
+            background-color: #f3f4f6; /* light gray background */
+            margin: 0; /* remove default margin */
+        }
+        canvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+        }
+        .button-container {
+            position: absolute;
+            top: 20px; /* adjust top position as needed */
+            right: 20px; /* align to the right */
+            z-index: 10;
+        }
+        .record-button {
+            position: absolute;
+            top: 60px; /* adjust top position as needed */
+            right: 20px; /* align to the right */
+            z-index: 10;
+        }
+        .container {
+            width: 70%; /* adjust width as needed */
+            max-width: 600px; /* set max-width for responsiveness */
+            background-color: #ffffff; /* white background */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* shadow effect */
+            padding: 20px; /* add padding for content */
+            border-radius: 10px; /* rounded corners */
+            margin-top: 20px; /* space between buttons and container */
+        }
+        .logo {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 225px; /* Adjust size as needed */
+            height: auto;
+        }
+    </style>
 </head>
-<body class="bg-gray-100">
-<canvas id="particleCanvas"></canvas>
-<div class="button-container">
-  <a href="{{ url_for('login') }}" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
-  <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
-    <i class="fas fa-play"></i>
-</button>
+<body>
+    <!-- Logo -->
+    <img src="static/images/logo.png" alt="Logo" class="logo">
+    
+    <!-- Login/Signup button -->
+    <div class="button-container">
+        <a href="{{ url_for('login') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
+    </div>
+
+    <!-- Record button -->
+    <div class="record-button">
+        <a href="{{ url_for('record') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Record</a>
+    </div>
+
+    <!-- Large white box container -->
+    <div class="container">
+        <!-- Your content here -->
+        <canvas id="particleCanvas"></canvas>
+        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
+            <i class="fas fa-play"></i>
+        </button>
+    </div>
 </body>
 </html>
