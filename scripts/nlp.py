@@ -45,4 +45,4 @@ def summarize_text(text):
 if __name__ == '__main__':
     model = whisper.load_model("tiny")
     text = convert_audio_to_text(model, 'harvard.wav')
-    print(text);
+    print(text)
