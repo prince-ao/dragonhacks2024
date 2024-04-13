@@ -5,6 +5,13 @@ import speech_recognition as sr
 
 r = sr.Recognizer()
 
+def convert_webm_to_wav(webm_data):
+    audio = AudioSegment.from_file(io.BytesIO(webm_data), format="webm")
+    wav_io = io.BytesIO()
+    audio.export(wav_io, format="wav")
+    wav_io.seek(0)
+    return wav_io
+
 def convert_ogg_to_wav(ogg_data):
     audio = AudioSegment.from_file(io.BytesIO(ogg_data), format="ogg")
     wav_io = io.BytesIO()
@@ -15,7 +22,7 @@ def convert_ogg_to_wav(ogg_data):
 def process_audio(data):
     text = ""
     try:
-        wav_audio = convert_ogg_to_wav(data)
+        wav_audio = convert_webm_to_wav(data)
 
         with sr.AudioFile(wav_audio) as source:
             audio = r.record(source)
