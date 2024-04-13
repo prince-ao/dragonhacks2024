@@ -6,8 +6,8 @@
 <title>Music Play Pause Button</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<script src="/static/audio.js" defer></script>
-<script src="/static/script.js" defer></script>
+<script src="/static/js/audio.js" defer></script>
+<script src="/static/js/script.js" defer></script>
 <style>
   body { position: relative; }
   canvas {
@@ -20,7 +20,7 @@
 </head>
 <body class="flex justify-center items-center h-screen bg-gray-100">
 <canvas id="particleCanvas"></canvas>
-<button id="playPauseBtn" onclick="togglePlayPause()" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none focus:ring focus:ring-red-300 z-10 relative">
+<button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none focus:ring focus:ring-red-300 z-10 relative">
     <i class="fas fa-play"></i>
 </button>
 </body>
