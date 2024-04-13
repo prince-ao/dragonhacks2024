@@ -5,8 +5,15 @@ name = "pypi"
 
 [packages]
 flask = "*"
+openai-whisper = "*"
+torch = "*"
+transformers = "*"
+embedchain = "*"
+langchain = "*"
+sentence-transformers = "*"
 
 [dev-packages]
+ipykernel = "*"
 
 [requires]
 python_version = "3.11"

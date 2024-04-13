@@ -8,6 +8,6 @@ def convert_audio_to_text(model, filepath):
 
 
 if __name__ == '__main__':
-    model = whisper.load_model("medium")
+    model = whisper.load_model("tiny")
     text = convert_audio_to_text(model, 'harvard.wav')
     print(text)
