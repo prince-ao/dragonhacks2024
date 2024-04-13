@@ -3,7 +3,7 @@ let intervalHandle;
 
 async function sendData(data) {
   try {
-    await fetch("/handle-audio", {
+    await fetch("/api/v1/handle-audio", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -52,6 +52,7 @@ async function startRecording() {
     reader.onload = function () {
       const base64data = reader.result.split(",")[1];
 
+      console.log("sending", base64data);
       sendData(base64data);
     };
 

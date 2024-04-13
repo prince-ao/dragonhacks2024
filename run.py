@@ -29,9 +29,8 @@ api = Api(app, version='1.0', title='HearToLearn.tech', description='API for Hea
 api.add_namespace(audio_handle_ns)
 
 with app.app_context():
-        html_page = Html(render_template('login.j2'))
-        gui = Gui(page=html_page,flask=app)
-      
+    html_page = Html(render_template('login.j2'))
+    gui = Gui(page=html_page,flask=app)
 
 if __name__ == '__main__':
     gui.run()
