@@ -5,9 +5,45 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign-Up Page</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        /* Adding a subtle background gradient and playful accents */
+        body {
+            background: linear-gradient(to right, #e3f2fd, #bbdefb);
+            font-family: 'Comic Sans MS', 'Comic Neue', cursive; /* playful font */
+        }
+        /* Enhancing input focus effect */
+        input:focus {
+            box-shadow: 0 0 0 3px rgba(29,78,216,0.3);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        /* Button interaction */
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(29,78,216,0.3);
+            transition: all 0.2s ease-out;
+        }
+        /* Style for the pencil sticker */
+        .pencil-sticker {
+            width: 60px;
+            height: 60px; /* adjust as needed */
+            background: url('/static/images/pencil.png') no-repeat center center;
+            background-size: contain;
+            margin-top: -30px; /* half of height for negative offset */
+            margin-right: -30px; /* half of width for negative offset */
+            float: right;
+        }
+        /* Sign-up container specific styling */
+        .signup-container {
+            position: relative;
+            padding-top: 40px; /* Added space for the pencil sticker */
+        }
+    </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
-    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full space-y-8">
+    <!-- Sign-up container with adjusted padding -->
+    <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full space-y-8 signup-container">
+        <!-- Pencil sticker inside the container -->
+        <div class="pencil-sticker"></div>
         <h1 class="text-2xl font-bold text-center mb-8">Create New Account</h1>
         <form action="/signup" method="POST">
             <!-- Name Input -->
