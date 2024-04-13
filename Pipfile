@@ -8,8 +8,9 @@ flask = "*"
 taipy = "*"
 flask-restx = "*"
 python-decouple = "*"
-install = "*"
 reloadium = "*"
+speechrecognition = "*"
+pydub = "*"
 
 [dev-packages]
 
