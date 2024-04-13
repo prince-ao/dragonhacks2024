@@ -6,6 +6,8 @@ name = "pypi"
 [packages]
 flask = "*"
 taipy = "*"
+flask-restx = "*"
+python-decouple = "*"
 
 [dev-packages]
 
