@@ -2,15 +2,8 @@ document.addEventListener("DOMContentLoaded", function () {
   let isPlaying = false;
   const canvas = document.getElementById("particleCanvas");
   const ctx = canvas.getContext("2d");
-
-  // Set canvas to full window size dynamically
-  function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-  }
-  window.addEventListener("resize", resizeCanvas);
-  resizeCanvas(); // Initial setup
-
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
   const btn = document.getElementById("playPauseBtn");
   btn.addEventListener("click", togglePlayPause);
 
@@ -20,8 +13,8 @@ document.addEventListener("DOMContentLoaded", function () {
     constructor(x, y) {
       this.x = x;
       this.y = y;
-      this.size = Math.random() * 30 + 5;
-      this.speedX = (Math.random() * 7 - 3.5) * 0.7;
+      this.size = Math.random() * 30 + 5; // Reduced size range to 5-35
+      this.speedX = (Math.random() * 7 - 3.5) * 0.7; // Slower speed
       this.speedY = (Math.random() * 7 - 3.5) * 0.7;
       this.color = `rgba(255, 0, 0, ${Math.random().toFixed(2)})`;
     }
@@ -57,8 +50,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  let particleInterval;
-  function togglePlayPause() {
+  async function togglePlayPause() {
     const icon = btn.querySelector("i");
     if (isPlaying) {
       icon.classList.remove("fa-pause");
@@ -66,10 +58,14 @@ document.addEventListener("DOMContentLoaded", function () {
       console.log("Paused");
       clearInterval(particleInterval);
     } else {
-      icon.classList.remove("fa-play");
-      icon.classList.add("fa-pause");
-      console.log("Playing");
-      particleInterval = setInterval(emitParticles, 100);
+      try {
+        icon.classList.remove("fa-play");
+        icon.classList.add("fa-pause");
+        console.log("Playing");
+        particleInterval = setInterval(emitParticles, 100);
+      } catch (e) {
+        alert("Microphone access is required");
+      }
     }
     isPlaying = !isPlaying;
   }
@@ -81,4 +77,5 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
   animate();
+  let particleInterval;
 });
