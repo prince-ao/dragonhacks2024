@@ -4,6 +4,7 @@ import json
 import warnings
 import numpy as np
 from embedchain import App
+from ast import literal_eval
 warnings.filterwarnings('ignore')
         
 
@@ -27,7 +28,7 @@ class Hear2Learn:
         Generate atleast 5 bullet points and atmax 20 bullet points for each topic summary. Provide the result in the following format: Topic\n - bullet point1\n -bullet point2\n
         """
         
-        self.quiz_instruction = """Task: Generate a quiz with 10 to 15 questions on the topics provided. Generate the response in json format"""
+        self.quiz_instruction = """Task: Generate a quiz with 10 to 15 questions on the topics provided. Generate the response in json format with {"question": quesiton1, "options": [option1, option2, option3, option4], "answer": "anser1"}"""
         
     def generate_app_config(self, temperature=0.):
         config={
@@ -48,21 +49,28 @@ class Hear2Learn:
         }
         return config
         
-        
     def summarize_text(self, text):
         prompt = f'{self.summary_instruction}\n + Text: {text}'
         answer= self.app.chat(prompt)
         summaries = answer.split('Answer')[-1]
         self.app.delete_session_chat_history()
+        summaries = self.format_summaries(summaries)
         
-        return self.format_summaries(summaries)
+        return summaries
     
-    def generate_quiz(self, summaries):
-        self.app.add(summaries)
+    def generate_quiz(self, context):
+        self.app.add(context)
         answer = self.app.chat(self.quiz_instruction)
         quiz = answer.split('Answer')[-1]
         self.app.delete_session_chat_history()
+        quiz = self.format_quiz(quiz)
         return quiz
+    
+    def chat(self, prompt):
+        answer = self.app.chat(prompt)
+        response = answer.split('Answer')[-1]
+        self.app.delete_session_chat_history()
+        return response
         
     def format_summaries(self, summaries):
         summaries = summaries.strip(':\n')
@@ -77,3 +85,6 @@ class Hear2Learn:
             })
             
         return summaries_list
+    
+    def format_quiz(self, quiz):
+        return literal_eval(quiz.strip(":\n").replace("\n", ""))
