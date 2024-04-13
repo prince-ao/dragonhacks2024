@@ -10,15 +10,15 @@ class Particle {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.size = Math.random() * 5 + 1;
-    this.speedX = Math.random() * 3 - 1.5;
-    this.speedY = Math.random() * 3 - 1.5;
-    this.color = 'rgba(255, 0, 0, ' + Math.random() + ')';
+    this.size = Math.random() * 8 + 3; // Decreased size range to 3-11
+    this.speedX = Math.random() * 4 - 2; // Decreased speed for slower movement
+    this.speedY = Math.random() * 4 - 2; // Decreased speed for slower movement
+    this.color = `rgba(255, 0, 0, ${Math.random().toFixed(2)})`;
   }
   update() {
     this.x += this.speedX;
     this.y += this.speedY;
-    if (this.size > 0.2) this.size -= 0.1;
+    if (this.size > 0.3) this.size -= 0.2; // Slower size reduction
   }
   draw() {
     ctx.fillStyle = this.color;
@@ -41,7 +41,7 @@ function handleParticles() {
 function emitParticles() {
   const x = canvas.width / 2;
   const y = canvas.height / 2;
-  for (let i = 0; i < 10; i++) {
+  for (let i = 0; i < 25; i++) { // Slightly reduced the number of particles emitted per interval
     particles.push(new Particle(x, y));
   }
 }
@@ -59,7 +59,7 @@ function togglePlayPause() {
     icon.classList.remove('fa-play');
     icon.classList.add('fa-pause');
     console.log('Playing');
-    particleInterval = setInterval(emitParticles, 100);
+    particleInterval = setInterval(emitParticles, 70); // Slightly less frequent emission for a slower effect
   }
   isPlaying = !isPlaying;
 }
