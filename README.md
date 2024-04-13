@@ -5,5 +5,5 @@
 ```sh
 pipenv shell
 pipenv install
-python run.py
+reloadium run run.py
 ```

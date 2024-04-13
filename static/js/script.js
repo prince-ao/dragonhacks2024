@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
   }
 
-  function togglePlayPause() {
+  async function togglePlayPause() {
     const btn = document.getElementById("playPauseBtn");
     const icon = btn.querySelector("i");
 
@@ -62,11 +62,15 @@ document.addEventListener("DOMContentLoaded", function () {
       clearInterval(particleInterval);
       stopRecording();
     } else {
-      icon.classList.remove("fa-play");
-      icon.classList.add("fa-pause");
-      console.log("Playing");
-      particleInterval = setInterval(emitParticles, 70);
-      startRecording();
+      try {
+        await startRecording();
+        icon.classList.remove("fa-play");
+        icon.classList.add("fa-pause");
+        console.log("Playing");
+        particleInterval = setInterval(emitParticles, 70);
+      } catch (e) {
+        alert("Microphone access is required");
+      }
     }
     isPlaying = !isPlaying;
   }

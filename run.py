@@ -17,5 +17,9 @@ api.add_namespace(audio_handle_ns)
 
 gui = Gui(page="# Taipy application", flask=app)
 
+"""
+asd
+"""
+
 if __name__ == '__main__':
     gui.run()
