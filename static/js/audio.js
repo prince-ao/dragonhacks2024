@@ -2,6 +2,7 @@ let audioRecorder;
 let intervalHandle;
 
 async function sendData(data) {
+  console.log(data)
   try {
     await fetch("/api/v1/handle-audio", {
       method: "POST",
