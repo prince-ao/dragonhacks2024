@@ -6,6 +6,8 @@
 <title>Music Play Pause Button</title>
 <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+<script src="/static/audio.js" defer></script>
+<script src="/static/script.js" defer></script>
 <style>
   body { position: relative; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; }
   canvas {
@@ -26,8 +28,6 @@
   <a href="login" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
   <button id="playPauseBtn" onclick="togglePlayPause()" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
     <i class="fas fa-play"></i>
-  </button>
-</div>
-<script src="static/script.js"></script>
+</button>
 </body>
 </html>
