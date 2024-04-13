@@ -9,38 +9,30 @@
     <script src="/static/js/audio.js"></script>
     <script src="/static/js/script.js"></script>
     <style>
-
-        .button-container {
+        /* Play/pause button positioning relative to the logo */
+        .play-pause-button {
             position: absolute;
-            top: 20px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 20;
+            left: calc(5px + 225px + 90px); /* Increased additional space from 40px to 90px */
+            top: 5px; /* Same vertical level as logo */
+            z-index: 10;
         }
-        .record-button {
-            position: absolute;
-            top: 60px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 100;
-        }
-
-    </style>
+    </style>    
 </head>
 <body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
-    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10" style="width: 225px; height: auto;">
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
     
     <!-- Login/Signup button -->
-    <div class="button-container">
-        <a href="{{ url_for('login') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
+    <div class="absolute top-5 right-5 z-20">
+        <a href="{{ url_for('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
     </div>
 
-    <div class="container">
-        <canvas id="particleCanvas" class="absolute top-0 left-0 pointer-events-none z-0"></canvas>
-        <div class="button-container">
-            <a href="login" class="mb-4 inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
-        <button id="playPauseBtn" onclick="togglePlayPause()" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
-            <i class="fas fa-play"></i>
-        </button>
-    </div>
+    <!-- Play/Pause button -->
+    <button id="playPauseBtn" onclick="togglePlayPause()" class="play-pause-button bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
+        <i class="fas fa-play"></i>
+    </button>
+
+    <!-- Canvas for Particle Effect -->
+    <canvas id="particleCanvas" class="absolute top-0 left-0 pointer-events-none z-0 w-full h-full"></canvas>
 </body>
 </html>
