@@ -14,6 +14,7 @@ class AudioHandler(Resource):
 
         body = request.get_json()
 
+
         body_convert = convert_audio_to_text(body['data'])
 
         user_text = user_text + body_convert
@@ -30,6 +31,5 @@ class AudioHandler(Resource):
         summery = h.summarize_text(user_text)
 
         return summery
-
 
 

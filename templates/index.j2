@@ -2,43 +2,33 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Hear2Learn - Your Auditory AI Companion</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-    <style>
-        /* Remove top bar */
-        header {
-            display: none;
-        }
-        /* Add logo to top left corner */
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 225px; /* Adjust size as needed */
-            height: auto;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Play Pause Button</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="/static/js/audio.js"></script>
+    <script src="/static/js/script.js"></script>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
-    <img src="static/images/logo.png" alt="Hear2Learn Logo" class="logo">
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
     
-    <main class="container mx-auto px-4 py-12 max-w-4xl">
-        <p class="my-6 text-lg leading-relaxed">An accessible auditory AI companion that transforms the way you engage with lectures. Hear2Learn not only records lectures in their entirety but also employs Natural Language Processing to condense content and craft questions and flashcards tailored to your learning needs. Embrace a revolutionized learning experience with Hear2Learn — where efficiency meets efficacy.</p>
-        
-        <p class="my-6 text-lg leading-relaxed">Powered by Google Cloud API, Hear2Learn offers real-time listening and recording, complemented by an audio file backup. Questions are generated through two innovative methods: NLP analysis for core topics combined with web scraping for problem-solving, and AI integration with ChatGPT for quick, efficient question generation — with safeguards against inaccuracies.</p>
+    <!-- Login/Signup button -->
+    <div class="absolute top-5 right-5 z-20">
+        <a href="{{ url_for('login') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
+    </div>
 
-        <p class="my-6 text-lg leading-relaxed">Flashcards are effortlessly formatted in JSON for simplicity and effectiveness, akin to popular study tools like Quizlet. Lectures are automatically sectioned by date and time, with customization options available for personal titles.</p>
+    <!-- Play/Pause button -->
+    <button id="playPauseBtn" onclick="togglePlayPause()" class="play-pause-button bg-red-500 hover:bg-red-700 text-white font-bold py-4 px-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none" style="position: absolute; left: calc(5px + 225px + 90px); top: 5px; z-index: 10;">
+        <i class="fas fa-play"></i>
+    </button>
 
-        <p class="my-6 text-lg leading-relaxed">Discover the collaborative edge with account linking for classroom environments, paving the way for potential professor supervision. Plus, with translation features, Hear2Learn is an ally for non-native speakers seeking comprehensive learning support.</p>
+    <!-- Long sheet of paper for plain text -->
+    <div class="absolute top-1/2 left-1/2 w-2/3 h-2/3 bg-white shadow-xl transform -translate-x-1/2 -translate-y-1/2 p-8 overflow-auto z-5">
+        <!-- Plain text can go here -->
+    </div>
 
-        <section class="cta text-center mt-10">
-            <a href="/start-lecture" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Start Recording</a>
-        </section>
-    </main>
-
-    <footer class="bg-gray-200 text-center p-6 mt-12">
-        <p>&copy; 2024 Hear2Learn. All rights reserved.</p>
-    </footer>
+    <!-- Canvas for Particle Effect -->
+    <canvas id="particleCanvas" class="absolute top-0 left-0 pointer-events-none z-0 w-full h-full"></canvas>
 </body>
 </html>
