@@ -9,29 +9,8 @@
     <script src="/static/js/audio.js" defer></script>
     <script src="/static/js/script.js" defer></script>
     <script src="/static/js/init.js" defer></script>
-    <style>
-        @keyframes moveDots {
-            0% {
-                background-position: 0px;
-            }
-            100% {
-                background-position: 50px 0px; /* Horizontal movement */
-            }
-        }
-
-        .animated-background {
-            background-image: radial-gradient(circle, #4a5568 10%, transparent 10%); /* Smaller dots */
-            background-size: 20px 20px; /* Closer spacing */
-            animation: moveDots 20s linear infinite; /* Faster movement */
-        }
-
-        .content-container {
-            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
-            backdrop-filter: blur(5px); /* Soft blur effect */
-        }
-    </style>
 </head>
-<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0 animated-background">
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
     <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
 

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Layout</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex h-screen bg-gray-200">
+    <!-- Sidebar -->
+    <div class="sidebar bg-gray-800 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out">
+        <h1 class="text-3xl font-bold text-center">Hear2Learn</h1>
+        <nav>
+            <a href="/lectures" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Lectures</a>
+            <a href="/create-lecture" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Create Lecture</a>
+            <a href="#contact" class="block py-2.5 px-4 rounded transition duration-200 hover:bg-gray-700">Contact</a>
+        </nav>
+    </div>
+
+    <div class="content flex-1 p-10">
+    {% block right %}
+    {% endblock %}
+    </div>
+</body>
+</html>

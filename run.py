@@ -12,6 +12,10 @@ import requests
 
 app = Flask(__name__)
 
+@app.route('/dashboard')
+def dashboard():
+    return render_template("dashboard.j2")
+
 @app.route('/index')
 def main_page():
     return render_template("index.j2")

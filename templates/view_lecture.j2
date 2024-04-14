@@ -8,51 +8,61 @@
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
     <script src="/static/js/lecture_view.js" defer></script>
     <style>
-        .perspective-1000 {
-            perspective: 1000px;
-        }
-        .transform-style-preserve-3d {
-            transform-style: preserve-3d;
-        }
-        .backface-hidden {
-            backface-visibility: hidden;
-        }
         .hidden {
             display: none;
         }
+        .date-time, .duration {
+            background-color: #f7fafc;
+            border-left: 4px solid #2c5282;
+            padding: 10px;
+            margin-bottom: 1rem;
+        }
     </style>
 </head>
-<body class="font-sans animated-background bg-gray-100">
+<body class="font-sans bg-gray-100">
 
-<div class="container">
-        <a href='/lectures'>
-            <button>back</button>
-        </a>
-        <h1>{{ title }}</h1>
-        <p><strong>Date and Time:</strong> {{ datetime.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-        <p><strong>Duration:</strong> {{ length }} minutes</p>
-        <h2>Summary</h2>
-        <p id="summary">{{ summary }}</p>
+<div class="container mx-auto px-4">
+    <a href='/lectures' class="p-4">
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4">
+            Back
+        </button>
+    </a>
 
-        <button id="flashcard-btn">Generate Flashcards</button>
 
-                <!-- Flip card container -->
-                <div id="flashcard-container" class="perspective-1000 cursor-pointer w-full h-full hidden">
-                    <div class="flip-card-inner flashcard-content absolute w-full h-full transform-style-preserve-3d transition-transform duration-500">
-                        <div class="flip-card-back backface-hidden absolute w-full h-full flex items-center justify-center text-white text-lg p-4 bg-red-500 transform rotate-y-180" id="back">
-                            Back content goes here
-                        </div>
-                    </div>
-                    <!-- Previous button -->
-                    <button id="prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l focus:outline-none">
-                        ← Previous
-                    </button>
-                    <!-- Next button -->
-                    <button id="next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none">
-                        Next →
-                    </button>
+    <div class="flex items-center justify-center flex-col min-h-screen">
+        <div class="bg-white rounded-lg shadow-xl p-10 max-w-4xl w-full">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">{{ title }}</h1>
+            <div class="text-gray-800">
+                <h2 class="text-2xl font-semibold mb-5 text-center">Summary</h2>
+                <pre id="summary" class="text-lg text-gray-700 mb-8">{{ summary }}</pre>
+                <div class="date-time">
+                    <p class="text-lg"><strong>Date and Time:</strong> <time datetime="{{ datetime.isoformat() }}">{{ datetime.strftime('%A, %B %d, %Y at %I:%M %p') }}</time></p>
                 </div>
+                <div class="duration">
+                    <p class="text-lg" id="durationDisplay"><strong>Duration:</strong></p>
+                </div>
+            </div>
+        </div>
+
+        <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded mt-4 ms-4" id="flashcard-btn">Generate Flashcards</button>
+
+        <div class="flex flex-col items-center justify-center min-h-screen rounded">
+            <div id="flashcard-container" class="relative cursor-pointer w-96 h-96 mx-auto hidden">
+                <div class="flip-card-inner flashcard-content absolute inset-0 transition-transform duration-500">
+                    <div class="flip-card-back backface-hidden absolute inset-0 flex items-center justify-center text-white text-lg p-4 bg-gradient-to-r from-red-500 to-pink-500 transform rotate-y-180 shadow-lg" id="back">
+                        Back content goes here
+                    </div>
+                </div>
+                <button id="prev" class="absolute left-0 bottom-0 bg-gray-300 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded-l focus:outline-none shadow transition duration-300 ease-in-out">
+                    ← Previous
+                </button>
+                <button id="next" class="absolute right-0 bottom-0 bg-gray-300 hover:bg-gray-500 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none shadow transition duration-300 ease-in-out">
+                    Next →
+                </button>
+            </div>
+        </div>
     </div>
+</div>
 
     <script>
         function formatDuration(totalMinutes) {
