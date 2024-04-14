@@ -2,9 +2,8 @@ let audioRecorder;
 let intervalHandle;
 
 async function sendData(data) {
-  console.log(data)
   try {
-    await fetch("/api/v1/handle-audio", {
+    await fetch("/api/v1/handle-audio/stream", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -13,6 +12,17 @@ async function sendData(data) {
     });
   } catch (err) {
     console.log(err);
+  }
+}
+
+async function sendStop() {
+  try {
+    const response = await fetch("/api/v1/handler-audio/stop");
+    const text_response = await response.text();
+
+    console.log(text_response);
+  } catch (e) {
+    console.log(e);
   }
 }
 

@@ -22,15 +22,14 @@
             box-shadow: 0 10px 20px rgba(29,78,216,0.3);
             transition: all 0.2s ease-out;
         }
-        /* Style for the pencil sticker */
         .pencil-sticker {
-            width: 60px;
-            height: 60px; /* adjust as needed */
+            width: 140px;
+            height: 140px;
             background: url('/static/images/pencil.png') no-repeat center center;
             background-size: contain;
-            margin-top: -30px; /* half of height for negative offset */
-            margin-right: -30px; /* half of width for negative offset */
-            float: right;
+            position: absolute;
+            top: -50px;  /* push half outside the top boundary */
+            right: -50px; /* push half outside the right boundary */
         }
         /* Sign-up container specific styling */
         .signup-container {
@@ -67,7 +66,9 @@
                 <input type="password" id="confirm_password" name="confirm_password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
             </div>
             <!-- Sign Up Button -->
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+            <a href="/start-lecture">
+                <button type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
+            </a>
             <!-- Link to Login Page -->
             <p class="mt-6 text-center">
                 Already have an account?

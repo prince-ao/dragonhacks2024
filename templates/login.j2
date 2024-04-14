@@ -22,15 +22,14 @@
             box-shadow: 0 10px 20px rgba(29,78,216,0.3);
             transition: all 0.2s ease-out;
         }
-        /* Style for the pencil sticker */
         .pencil-sticker {
-            width: 60px;
-            height: 60px; /* adjust as needed */
+            width: 140px;
+            height: 140px;
             background: url('/static/images/pencil.png') no-repeat center center;
             background-size: contain;
-            margin-top: -30px; /* half of height for negative offset */
-            margin-right: -30px; /* half of width for negative offset */
-            float: right;
+            position: absolute;
+            top: -50px;  /* push half outside the top boundary */
+            right: -50px; /* push half outside the right boundary */
         }
         /* Login container specific styling */
         .login-container {
@@ -45,7 +44,7 @@
         <!-- Pencil sticker inside the container -->
         <div class="pencil-sticker"></div>
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-10">Login to Your Account</h1>
-        <form action="/login" method="POST">
+        <form>
             <!-- Email Input -->
             <div class="mb-5">
                 <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
@@ -65,7 +64,9 @@
                 <a href="#" class="text-sm text-blue-600 hover:text-blue-800">Forgot your password?</a>
             </div>
             <!-- Sign In Button -->
-            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg focus:outline-none">Sign In</button>
+            <a href="/start-lecture">
+                <button type="button" class="w-full bg-blue-600 hover:bg-blue-800 text-white font-bold py-3 px-4 rounded-lg focus:outline-none">Sign In</button>
+            </a>
             <!-- Link to Signup Page -->
             <p class="mt-8 text-center text-sm">
                 Don't have an account?

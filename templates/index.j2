@@ -2,50 +2,14 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Music Play Pause Button</title>
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="/static/js/audio.js"></script>
-    <script src="/static/js/script.js"></script>
+    <title>Hear2Learn - Your Auditory AI Companion</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <style>
-        body { 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            background-color: #f3f4f6; /* light gray background */
-            margin: 0; /* remove default margin */
+        /* Remove top bar */
+        header {
+            display: none;
         }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
-        }
-        .button-container {
-            position: absolute;
-            top: 20px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 10;
-        }
-        .record-button {
-            position: absolute;
-            top: 60px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 10;
-        }
-        .container {
-            width: 70%; /* adjust width as needed */
-            max-width: 600px; /* set max-width for responsiveness */
-            background-color: #ffffff; /* white background */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* shadow effect */
-            padding: 20px; /* add padding for content */
-            border-radius: 10px; /* rounded corners */
-            margin-top: 20px; /* space between buttons and container */
-        }
+        /* Add logo to top left corner */
         .logo {
             position: absolute;
             top: 20px;
@@ -55,27 +19,26 @@
         }
     </style>
 </head>
-<body>
+<body class="bg-gray-50 text-gray-900 font-sans">
     <!-- Logo -->
-    <img src="static/images/logo.png" alt="Logo" class="logo">
+    <img src="static/images/logo.png" alt="Hear2Learn Logo" class="logo">
     
-    <!-- Login/Signup button -->
-    <div class="button-container">
-        <a href="{{ url_for('login') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
-    </div>
+    <main class="container mx-auto px-4 py-12 max-w-4xl">
+        <p class="my-6 text-lg leading-relaxed">An accessible auditory AI companion that transforms the way you engage with lectures. Hear2Learn not only records lectures in their entirety but also employs Natural Language Processing to condense content and craft questions and flashcards tailored to your learning needs. Embrace a revolutionized learning experience with Hear2Learn — where efficiency meets efficacy.</p>
+        
+        <p class="my-6 text-lg leading-relaxed">Powered by Google Cloud API, Hear2Learn offers real-time listening and recording, complemented by an audio file backup. Questions are generated through two innovative methods: NLP analysis for core topics combined with web scraping for problem-solving, and AI integration with ChatGPT for quick, efficient question generation — with safeguards against inaccuracies.</p>
 
-    <!-- Record button -->
-    <div class="record-button">
-        <a href="{{ url_for('record') }}" class="inline-block bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Record</a>
-    </div>
+        <p class="my-6 text-lg leading-relaxed">Flashcards are effortlessly formatted in JSON for simplicity and effectiveness, akin to popular study tools like Quizlet. Lectures are automatically sectioned by date and time, with customization options available for personal titles.</p>
 
-    <!-- Large white box container -->
-    <div class="container">
-        <!-- Your content here -->
-        <canvas id="particleCanvas"></canvas>
-        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
-            <i class="fas fa-play"></i>
-        </button>
-    </div>
+        <p class="my-6 text-lg leading-relaxed">Discover the collaborative edge with account linking for classroom environments, paving the way for potential professor supervision. Plus, with translation features, Hear2Learn is an ally for non-native speakers seeking comprehensive learning support.</p>
+
+        <section class="cta text-center mt-10">
+            <a href="/start-lecture" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-lg shadow-lg transition duration-300 ease-in-out transform hover:-translate-y-1">Start Recording</a>
+        </section>
+    </main>
+
+    <footer class="bg-gray-200 text-center p-6 mt-12">
+        <p>&copy; 2024 Hear2Learn. All rights reserved.</p>
+    </footer>
 </body>
 </html>
