@@ -9,7 +9,6 @@
         /* Adding a subtle background gradient and playful accents */
         body {
             background: linear-gradient(to right, #e3f2fd, #bbdefb);
-            font-family: 'Comic Sans MS', 'Comic Neue', cursive; /* playful font */
         }
         /* Enhancing input focus effect */
         input:focus {
@@ -39,6 +38,9 @@
     </style>
 </head>
 <body class="bg-gray-100 flex items-center justify-center h-screen">
+    <!-- Logo -->
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
+
     <!-- Sign-up container with adjusted padding -->
     <div class="bg-white p-8 rounded-lg shadow-xl max-w-md w-full space-y-8 signup-container">
         <!-- Pencil sticker inside the container -->
@@ -66,9 +68,7 @@
                 <input type="password" id="confirm_password" name="confirm_password" class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500" required>
             </div>
             <!-- Sign Up Button -->
-            <a href="/create-lecture">
-                <button type="button" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
-            </a>
+            <button type="submit" class="w-full bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Sign Up</button>
             <!-- Link to Login Page -->
             <p class="mt-6 text-center">
                 Already have an account?
