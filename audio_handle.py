@@ -1,4 +1,4 @@
-from flask import request
+from flask import request, make_response
 from flask_restx import Namespace, Resource
 from scripts.nlp import convert_audio_to_text, Hear2Learn
 
@@ -18,7 +18,11 @@ class AudioHandler(Resource):
 
         user_text = user_text + body_convert
 
-        return body_convert
+        resp = make_response(body_convert)
+
+        resp.content_type = 'text/plain'
+
+        return resp
 
 
 

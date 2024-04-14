@@ -1,15 +1,24 @@
 let audioRecorder;
 let intervalHandle;
+let audioText;
 
 async function sendData(data) {
   try {
-    await fetch("/api/v1/handle-audio/stream", {
+
+    const response = await fetch("/api/v1/handle-audio/stream", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({ data }),
     });
+
+    const text_response = await response.text();
+
+    audioText = document.getElementById('audio-text');
+    console.log(text_response)
+
+    audioText.textContent = audioText.textContent + " " +  text_response
   } catch (err) {
     console.log(err);
   }
@@ -86,7 +95,7 @@ async function startRecording() {
     setTimeout(() => {
       audioRecorder.start();
     }, 0);
-  }, 15 * 1e3);
+  }, 5 * 1e3);
 
   audioRecorder.start();
 }

@@ -6,8 +6,9 @@
     <title>Music Play Pause Button</title>
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <script src="/static/js/audio.js"></script>
-    <script src="/static/js/script.js"></script>
+    <script src="/static/js/audio.js" defer></script>
+    <script src="/static/js/script.js" defer></script>
+    <script src="/static/js/init.js" defer></script>
     <style>
         body { 
             position: relative; 
@@ -59,14 +60,13 @@
     <!-- Logo -->
     <img src="static/images/logo.png" alt="Logo" class="logo">
     
-    <!-- Login/Signup button -->
-    <div class="button-container">
-        <a href="{{ url_for('login') }}" class="inline-block bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Login/Signup</a>
-    </div>
+    <h1 id="title"></h1>
+    <button id="done-btn">Done</button>
 
     <!-- Large white box container -->
     <div class="container">
         <!-- Your content here -->
+        <p id="audio-text"></p>
         <canvas id="particleCanvas"></canvas>
         <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
             <i class="fas fa-play"></i>
