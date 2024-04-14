@@ -9,6 +9,5 @@ class AudioHandler(Resource):
     def post(self):
         body = request.get_json()
 
-
         print(body['data'])
         print(convert_audio_to_text(body['data']))
