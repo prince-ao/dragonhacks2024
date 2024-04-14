@@ -140,30 +140,34 @@ def button_pressed(state):
 page = """
 <|{logo_url}|image|>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh">
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh">
+    <h2>Revolutionizing Learning with Hear2Learn</h2>
     <div style="display: flex; justify-content: center; align-items: center; width: 1100px; padding: 20px; gap: 50px;">
         <p>An accessible auditory AI companion that transforms the way you engage with lectures. Hear2Learn not only records lectures in their entirety but also employs Natural Language Processing to condense content and craft questions and flashcards tailored to your learning needs. Embrace a revolutionized learning experience with Hear2Learn — where efficiency meets efficacy.</p>
-        <img src="http://127.0.0.1:5000/static/images/ai-speech.webp" width="500px"/>
+        <img src="http://127.0.0.1:5000/static/images/ai-speech.webp" width="500px" style="border-radius: 10px;"/>
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh">
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh">
+    <h2>Introducing Hear2Learn</h2>
     <div style="display: flex; justify-content: center; align-items: center; width: 1100px; padding: 20px; gap: 50px;">
         <p>Powered by Google Cloud API, Hear2Learn offers real-time listening and recording, complemented by an audio file backup. Questions are generated through two innovative methods: NLP analysis for core topics combined with web scraping for problem-solving, and AI integration with ChatGPT for quick, efficient question generation — with safeguards against inaccuracies.</p>
         <img src="http://127.0.0.1:5000/static/images/google-cloud.png" width="400px"/>
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh">
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh">
+    <h2>Enhancing Study Efficiency</h2>
     <div style="display: flex; justify-content: center; align-items: center; width: 1100px; padding: 20px; gap: 50px;">
         <p>Flashcards are effortlessly formatted in JSON for simplicity and effectiveness, akin to popular study tools like Quizlet. Lectures are automatically sectioned by date and time, with customization options available for personal titles.</p>
     </div>
 </div>
 
-<div style="display: flex; justify-content: center; align-items: center; height: 100vh">
+<div style="display: flex; justify-content: center; align-items: center; flex-direction: column; height: 100vh">
+    <h2>Unlocking Collaborative Learning</h2>
     <div style="display: flex; justify-content: center; align-items: center; width: 1100px; padding: 20px; gap: 50px;">
         <p>Discover the collaborative edge with account linking for classroom environments, paving the way for potential professor supervision. Plus, with translation features, Hear2Learn is an ally for non-native speakers seeking comprehensive learning support.</p>
-        <img src="http://127.0.0.1:5000/static/images/teacher.jpg" width="400px"/>
+        <img src="http://127.0.0.1:5000/static/images/teacher.jpg" width="400px" style="border-radius: 10px;"/>
     </div>
 </div>
 
