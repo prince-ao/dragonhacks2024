@@ -13,15 +13,15 @@ document.addEventListener("DOMContentLoaded", function () {
     constructor(x, y) {
       this.x = x;
       this.y = y;
-      this.size = Math.random() * 8 + 3; // Size range of 3-11
-      this.speedX = Math.random() * 4 - 2; // Slower movement speed
-      this.speedY = Math.random() * 4 - 2;
+      this.size = Math.random() * 30 + 5; // Reduced size range to 5-35
+      this.speedX = (Math.random() * 7 - 3.5) * 0.7; // Slower speed
+      this.speedY = (Math.random() * 7 - 3.5) * 0.7;
       this.color = `rgba(255, 0, 0, ${Math.random().toFixed(2)})`;
     }
     update() {
       this.x += this.speedX;
       this.y += this.speedY;
-      if (this.size > 0.3) this.size -= 0.2;
+      if (this.size > 0.5) this.size -= 0.3;
     }
     draw() {
       ctx.fillStyle = this.color;
@@ -35,39 +35,34 @@ document.addEventListener("DOMContentLoaded", function () {
     for (let i = particles.length - 1; i >= 0; i--) {
       particles[i].update();
       particles[i].draw();
-      if (particles[i].size <= 0.3) {
+      if (particles[i].size <= 0.5) {
         particles.splice(i, 1);
       }
     }
   }
 
   function emitParticles() {
-    const rect = btn.getBoundingClientRect(); // Get the position and dimensions of the button
-    const x = rect.left + rect.width / 2 + window.scrollX; // Center X of the button
-    const y = rect.top + rect.height / 2 + window.scrollY; // Center Y of the button
-
+    const rect = btn.getBoundingClientRect();
+    const x = rect.left + rect.width / 2 + window.scrollX;
+    const y = rect.top + rect.height / 2 + window.scrollY;
     for (let i = 0; i < 25; i++) {
       particles.push(new Particle(x, y));
     }
   }
 
   async function togglePlayPause() {
-    const btn = document.getElementById("playPauseBtn");
     const icon = btn.querySelector("i");
-
     if (isPlaying) {
       icon.classList.remove("fa-pause");
       icon.classList.add("fa-play");
       console.log("Paused");
       clearInterval(particleInterval);
-      stopRecording();
     } else {
       try {
-        await startRecording();
         icon.classList.remove("fa-play");
         icon.classList.add("fa-pause");
         console.log("Playing");
-        particleInterval = setInterval(emitParticles, 70);
+        particleInterval = setInterval(emitParticles, 100);
       } catch (e) {
         alert("Microphone access is required");
       }
