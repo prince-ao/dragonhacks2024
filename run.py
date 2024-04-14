@@ -4,9 +4,11 @@ from audio_handle import audio_handle_ns
 from config import DevConfig
 from flask_restx import Api
 from taipy.gui import Html, navigate
-from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
+from db import db, Lecture
+from audio_handle import hear
+import requests
 
 app = Flask(__name__)
 
@@ -16,34 +18,36 @@ def main_page():
 
 app.config.from_object(DevConfig)
 
-db = SQLAlchemy(app)
-
-class Lecture(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    title = db.Column(db.String(80), nullable=False)
-    description = db.Column(db.Text)
-    length = db.Column(db.Integer)
-    datetime = db.Column(db.DateTime, default=lambda: datetime.now(ZoneInfo('UTC')))
-
+db.init_app(app)
 
 @app.route('/lecture', methods=['POST', 'GET'])
 def lecture():
     if request.method == 'POST':
         body = request.get_json()
 
-        lecture = Lecture.query.get(int(body['id']))
+        lecture = Lecture.query.filter_by(id=int(body['id'])).first()
 
         return { "title": lecture.title }
     else:
         return "Not implemented"
 
-@app.get('/end-lecture')
+@app.get('/view-lecture/<int:lecture_id>')
+def view_lecture(lecture_id):
+    lecture = Lecture.query.filter_by(id=int(lecture_id)).first()
+
+    return render_template("view_lecture.j2", title=lecture.title, summary=lecture.summary, length=lecture.length, datetime=lecture.datetime)
+
+
+@app.post('/end-lecture')
 def end_lecture():
+    body = request.get_json()
     user_id = request.cookies.get('ml')
 
-    lecture = Lecture.query.get(int(user_id))
+    summary = hear.summarize_text(body['lecture'])
 
-    print(lecture.datetime)
+    lecture = Lecture.query.filter_by(id=int(user_id)).first()
+
+    lecture.summary = summary
 
     datetime1 = lecture.datetime.replace(tzinfo=timezone.utc).timestamp()
     datetime2 = datetime.now(timezone.utc).timestamp()
@@ -54,9 +58,11 @@ def end_lecture():
 
     lecture.length = elapsed_minutes
 
-    resp = redirect('/create-lecture')
+    resp = redirect(f'/view-lecture/{int(lecture.id)}')
 
     resp.delete_cookie('ml')
+
+    db.session.commit()
 
     return resp
 

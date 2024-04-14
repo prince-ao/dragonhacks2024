@@ -53,12 +53,14 @@ document.addEventListener("DOMContentLoaded", function () {
   async function togglePlayPause() {
     const icon = btn.querySelector("i");
     if (isPlaying) {
+      await stopRecording();
       icon.classList.remove("fa-pause");
       icon.classList.add("fa-play");
       console.log("Paused");
       clearInterval(particleInterval);
     } else {
       try {
+        await startRecording();
         icon.classList.remove("fa-play");
         icon.classList.add("fa-pause");
         console.log("Playing");

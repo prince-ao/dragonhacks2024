@@ -26,10 +26,7 @@ async function sendData(data) {
 
 async function sendStop() {
   try {
-    const response = await fetch("/api/v1/handler-audio/stop");
-    const text_response = await response.text();
-
-    console.log(text_response);
+    await fetch("/api/v1/handler-audio/stop");
   } catch (e) {
     console.log(e);
   }
@@ -95,7 +92,7 @@ async function startRecording() {
     setTimeout(() => {
       audioRecorder.start();
     }, 0);
-  }, 5 * 1e3);
+  }, 15 * 1e3);
 
   audioRecorder.start();
 }
@@ -104,6 +101,6 @@ async function stopRecording() {
   if (audioRecorder && audioRecorder.state !== "inactive") {
     audioRecorder.stop();
   }
-
+  
   clearInterval(intervalHandle);
 }

@@ -1,8 +1,15 @@
 const title = document.getElementById('title')
 const btn = document.getElementById('done-btn')
+const audio_text = document.getElementById('audio-text')
 
 btn.addEventListener('click', async () => {
-    const response = await fetch("/end-lecture")
+    console.log("here")
+
+    const response = await fetch("/end-lecture", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ lecture: audio_text.textContent })
+    })
 
     console.log(response)
 
