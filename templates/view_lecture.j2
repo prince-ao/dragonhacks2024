@@ -4,49 +4,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Assuming you have some CSS styles -->
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+    <script src="/static/js/lecture_view.js" defer></script>
     <style>
-        @keyframes moveDots {
-            0% {
-                background-position: 0px;
-            }
-            100% {
-                background-position: 50px 0px; /* Horizontal movement */
-            }
+        .perspective-1000 {
+            perspective: 1000px;
         }
-
-        .animated-background {
-            background-image: radial-gradient(circle, #4a5568 10%, transparent 10%);
-            background-size: 20px 20px;
-            animation: moveDots 20s linear infinite;
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
         }
-
-        .date-time, .duration {
-            background-color: #f7fafc;
-            border-left: 4px solid #2c5282;
-            padding: 10px;
-            margin-bottom: 1rem;
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body class="font-sans animated-background bg-gray-100">
-    <!-- Logo -->
-    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
 
-    <div class="flex items-center justify-center min-h-screen">
-        <div class="bg-white rounded-lg shadow-xl p-10 max-w-4xl w-full">
-            <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">{{ title }}</h1>
-            <div class="text-gray-800">
-                <div class="date-time">
-                    <p class="text-lg"><strong>Date and Time:</strong> <time datetime="{{ datetime.isoformat() }}">{{ datetime.strftime('%A, %B %d, %Y at %I:%M %p') }}</time></p>
+
+<div class="container">
+        <a href='/lectures'>
+            <button>back</button>
+        </a>
+        <h1>{{ title }}</h1>
+        <p><strong>Date and Time:</strong> {{ datetime.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <p><strong>Duration:</strong> {{ length }} minutes</p>
+        <h2>Summary</h2>
+        <p id="summary">{{ summary }}</p>
+
+        <button id="flashcard-btn">Generate Flashcards</button>
+
+                <!-- Flip card container -->
+                <div id="flashcard-container" class="perspective-1000 cursor-pointer w-full h-full hidden">
+                    <div class="flip-card-inner flashcard-content absolute w-full h-full transform-style-preserve-3d transition-transform duration-500">
+                        <div class="flip-card-back backface-hidden absolute w-full h-full flex items-center justify-center text-white text-lg p-4 bg-red-500 transform rotate-y-180" id="back">
+                            Back content goes here
+                        </div>
+                    </div>
+                    <!-- Previous button -->
+                    <button id="prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l focus:outline-none">
+                        ← Previous
+                    </button>
+                    <!-- Next button -->
+                    <button id="next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none">
+                        Next →
+                    </button>
+
                 </div>
-                <div class="duration">
-                    <p class="text-lg" id="durationDisplay"><strong>Duration:</strong></p>
-                </div>
-                <h2 class="text-2xl font-semibold mb-5 text-center">Summary</h2>
-                <p class="text-lg text-gray-700">{{ summary }}</p>
-            </div>
-        </div>
     </div>
 
     <script>
