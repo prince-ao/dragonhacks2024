@@ -56,9 +56,9 @@
         }
     </style>
 </head>
-<body>
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
-    <img src="static/images/logo.png" alt="Logo" class="logo">
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
     
     <h1 id="title"></h1>
     <button id="done-btn">Done</button>
@@ -72,5 +72,8 @@
             <i class="fas fa-play"></i>
         </button>
     </div>
+
+    <!-- Canvas for Particle Effect -->
+    <canvas id="particleCanvas" class="absolute top-0 left-0 pointer-events-none z-0 w-full h-full"></canvas>
 </body>
 </html>
