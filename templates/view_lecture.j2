@@ -5,7 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
     <link rel="stylesheet" href="/static/style.css"> <!-- Assuming you have some CSS styles -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
     <script src="/static/js/lecture_view.js" defer></script>
+    <style>
+        .perspective-1000 {
+            perspective: 1000px;
+        }
+        .transform-style-preserve-3d {
+            transform-style: preserve-3d;
+        }
+        .backface-hidden {
+            backface-visibility: hidden;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
 </head>
 <body>
     <div class="container">
@@ -16,10 +31,26 @@
         <p><strong>Date and Time:</strong> {{ datetime.strftime('%Y-%m-%d %H:%M:%S') }}</p>
         <p><strong>Duration:</strong> {{ length }} minutes</p>
         <h2>Summary</h2>
-        <p>{{ summary }}</p>
+        <p id="summary">{{ summary }}</p>
 
         <button id="flashcard-btn">Generate Flashcards</button>
-        <div id="flashcard-container"></div>
+
+                <!-- Flip card container -->
+                <div id="flashcard-container" class="perspective-1000 cursor-pointer w-full h-full hidden">
+                    <div class="flip-card-inner flashcard-content absolute w-full h-full transform-style-preserve-3d transition-transform duration-500">
+                        <div class="flip-card-back backface-hidden absolute w-full h-full flex items-center justify-center text-white text-lg p-4 bg-red-500 transform rotate-y-180" id="back">
+                            Back content goes here
+                        </div>
+                    </div>
+                    <!-- Previous button -->
+                    <button id="prev" class="absolute left-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-l focus:outline-none">
+                        ← Previous
+                    </button>
+                    <!-- Next button -->
+                    <button id="next" class="absolute right-0 top-1/2 -translate-y-1/2 bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 rounded-r focus:outline-none">
+                        Next →
+                    </button>
+                </div>
     </div>
 </body>
 </html>

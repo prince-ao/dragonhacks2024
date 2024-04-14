@@ -1,30 +1,45 @@
-const btn = document.getElementById('flashcard-btn')
-const container = document.getElementById('flashcard-container')
-let currentCard = 0;
-const flashcardContainer = document.getElementById('flashcard-container');
-const prevButton = document.getElementById('prev');
-const nextButton = document.getElementById('next');
+document.addEventListener('DOMContentLoaded', function() {
+    const btn = document.getElementById('flashcard-btn');
+    const flashcardContainer = document.getElementById('flashcard-container');
+    const prevButton = document.getElementById('prev');
+    const nextButton = document.getElementById('next');
+    const front = document.getElementById('front');
+    const back = document.getElementById('back');
 
-async function loadFlashcards() {
-    const response = await fetch('/generate-flashcards');
-    const flashcards = await response.json();
-    
-    displayFlashcard();
+    let currentCard = 0;
+    let flashcards = [];
+
+    async function loadFlashcards() {
+        const summary = document.getElementById('summary').textContent;
+
+        const response = await fetch('/generate-flashcards', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ summary: summary })
+        });
+
+        flashcards = await response.json();
+        displayFlashcard();
+    }
 
     function displayFlashcard() {
-        flashcardContainer.querySelector('.front').textContent = flashcards[currentCard].front;
-        flashcardContainer.querySelector('.back').textContent = flashcards[currentCard].back;
+        if (flashcards.length > 0) {
+            back.textContent = flashcards[currentCard]['front'];
+            flashcardContainer.classList.remove('hidden');
+        }
     }
 
     flashcardContainer.addEventListener('click', () => {
-        flashcardContainer.querySelector('.flashcard-content').classList.toggle('flip');
+        flashcardContainer.querySelector('.flip-card-inner').classList.toggle('flip');
     });
 
     prevButton.addEventListener('click', () => {
         if (currentCard > 0) {
             currentCard--;
             displayFlashcard();
-            flashcardContainer.querySelector('.flashcard-content').classList.remove('flip');
+            flashcardContainer.querySelector('.flip-card-inner').classList.remove('flip');
         }
     });
 
@@ -32,15 +47,19 @@ async function loadFlashcards() {
         if (currentCard < flashcards.length - 1) {
             currentCard++;
             displayFlashcard();
-            flashcardContainer.querySelector('.flashcard-content').classList.remove('flip');
+            flashcardContainer.querySelector('.flip-card-inner').classList.remove('flip');
         }
     });
-}
 
-btn.addEventListener('click', async () => {
-    const response = await fetch('/generate-flashcards')
-    const response_json = await response.json()
+    btn.addEventListener('click', async () => {
+        await loadFlashcards();
 
-    for (let obj of response_json) {
-    }
-})
+        back.addEventListener('click', async () => {
+            if (back.textContent === flashcards[currentCard]['back']) {
+                back.textContent = flashcards[currentCard]['front']
+            } else {
+                back.textContent = flashcards[currentCard]['back']
+            }
+        });
+    });
+});

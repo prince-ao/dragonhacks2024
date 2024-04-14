@@ -37,6 +37,25 @@ def view_lecture(lecture_id):
 
     return render_template("view_lecture.j2", title=lecture.title, summary=lecture.summary, length=lecture.length, datetime=lecture.datetime)
 
+@app.post('/generate-flashcards')
+def generate_flashcards():
+    body = request.get_json()
+
+    flashcards = hear.generate_flashcards(body['summary'])
+
+    if flashcards[0] == '`':
+
+        lines = flashcards.splitlines()
+
+        modified_lines = lines[1:-1]
+
+        flashcards = '\n'.join(modified_lines)
+
+    print(flashcards)
+    resp = make_response(flashcards)
+    resp.content_type = 'application/json'
+
+    return resp
 
 @app.post('/end-lecture')
 def end_lecture():
