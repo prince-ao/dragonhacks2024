@@ -4,22 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }}</title>
-    <link rel="stylesheet" href="/static/style.css"> <!-- Assuming you have some CSS styles -->
     <script src="/static/js/lecture_view.js" defer></script>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.1/dist/tailwind.min.css" rel="stylesheet">
+    <style>
+        @keyframes moveDots {
+            0% {
+                background-position: 0px;
+            }
+            100% {
+                background-position: 50px 0px; /* Horizontal movement */
+            }
+        }
+
+        .animated-background {
+            background-image: radial-gradient(circle, #4a5568 10%, transparent 10%);
+            background-size: 20px 20px;
+            animation: moveDots 20s linear infinite;
+        }
+
+        .date-time, .duration {
+            background-color: #f7fafc;
+            border-left: 4px solid #2c5282;
+            padding: 10px;
+            margin-bottom: 1rem;
+        }
+    </style>
 </head>
-<body>
-    <div class="container">
+<body class="font-sans animated-background bg-gray-100">
+
+<div class="container">
         <a href='/lectures'>
             <button>back</button>
         </a>
-        <h1>{{ title }}</h1>
-        <p><strong>Date and Time:</strong> {{ datetime.strftime('%Y-%m-%d %H:%M:%S') }}</p>
-        <p><strong>Duration:</strong> {{ length }} minutes</p>
-        <h2>Summary</h2>
-        <p>{{ summary }}</p>
 
         <button id="flashcard-btn">Generate Flashcards</button>
         <div id="flashcard-container"></div>
+    <!-- Logo -->
+    <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
+    
+    <div class="flex items-center justify-center min-h-screen">
+        <div class="bg-white rounded-lg shadow-xl p-10 max-w-4xl w-full">
+            <h1 class="text-3xl font-bold text-gray-900 mb-8 text-center">{{ title }}</h1>
+            <div class="text-gray-800">
+                <div class="date-time">
+                    <p class="text-lg"><strong>Date and Time:</strong> <time datetime="{{ datetime.isoformat() }}">{{ datetime.strftime('%A, %B %d, %Y at %I:%M %p') }}</time></p>
+                </div>
+                <div class="duration">
+                    <p class="text-lg" id="durationDisplay"><strong>Duration:</strong></p>
+                </div>
+                <h2 class="text-2xl font-semibold mb-5 text-center">Summary</h2>
+                <p class="text-lg text-gray-700">{{ summary }}</p>
+            </div>
+        </div>
     </div>
+
+    <script>
+        function formatDuration(totalMinutes) {
+            const totalSeconds = Math.round(totalMinutes * 60);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${hours} hour(s) ${minutes} minute(s) ${seconds} second(s)`;
+        }
+
+        document.getElementById('durationDisplay').innerText += formatDuration({{ length }});
+    </script>
 </body>
 </html>
