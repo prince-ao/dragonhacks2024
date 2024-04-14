@@ -92,7 +92,7 @@ async function startRecording() {
     setTimeout(() => {
       audioRecorder.start();
     }, 0);
-  }, 15 * 1e3);
+  }, 5 * 1e3);
 
   audioRecorder.start();
 }

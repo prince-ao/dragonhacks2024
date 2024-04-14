@@ -55,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
         await loadFlashcards();
 
         back.addEventListener('click', async () => {
+            console.log('here')
             if (back.textContent === flashcards[currentCard]['back']) {
                 back.textContent = flashcards[currentCard]['front']
             } else {

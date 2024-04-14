@@ -8,7 +8,6 @@ from datetime import datetime, timezone
 from zoneinfo import ZoneInfo
 from db import db, Lecture
 from audio_handle import hear
-import requests
 
 app = Flask(__name__)
 

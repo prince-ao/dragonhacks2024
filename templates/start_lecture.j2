@@ -9,27 +9,41 @@
     <script src="/static/js/audio.js" defer></script>
     <script src="/static/js/script.js" defer></script>
     <script src="/static/js/init.js" defer></script>
+    <style>
+        .sticker {
+            width: 140px;
+            height: 140px;
+            background: url('/static/images/happy.webp') no-repeat center center;
+            background-size: contain;
+            position: absolute;
+            top: -50px;  /* push half outside the top boundary */
+            right: -50px; /* push half outside the right boundary */
+        }
+    </style>
 </head>
 <body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
     <!-- Logo -->
     <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
 
     <!-- title to be centered at top of screen above text box -->
-    <h1 id="title" class="text-xl font-bold absolute top-0 left-1/2 transform -translate-x-1/2 pt-4">Title</h1>
+    <h1 id="title" class="text-3xl font-bold absolute top-5 left-1/2 transform -translate-x-1/2 pt-4">Title</h1>
 
     <!-- Long sheet of paper for plain text -->
-    <div class="absolute top-1/2 left-1/2 w-2/3 h-2/3 bg-white shadow-xl transform -translate-x-1/2 -translate-y-1/2 p-8 overflow-auto z-5 content-container">
-        <p id="audio-text"></p>
+    <div>
+        <div class="sticker"></div>
+        <div class="absolute top-1/2 left-1/2 w-2/3 h-2/3 bg-white shadow-xl transform -translate-x-1/2 -translate-y-1/2 p-8 overflow-auto z-5 content-container rounded">
+            <p id="audio-text"></p>
+        </div>
     </div>
 
     <!-- Controls Container at the bottom center -->
     <div class="flex items-center justify-center absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10">
         <!-- Play/Pause button -->
-        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold rounded-full focus:outline-none mx-2 w-12 h-12 flex items-center justify-center">
+        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold rounded-full focus:outline-none mx-2 w-16 h-16 flex items-center justify-center">
             <i class="fas fa-play"></i>
         </button>
         <!-- Done button -->
-        <button id="done-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full focus:outline-none mx-2 w-12 h-12 flex items-center justify-center">
+        <button id="done-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full focus:outline-none mx-2 w-16 h-16 flex items-center justify-center">
             Done
         </button>
     </div>
