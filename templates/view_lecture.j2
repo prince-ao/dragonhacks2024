@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }}</title>
+    <link rel="stylesheet" href="/static/style.css"> <!-- Assuming you have some CSS styles -->
+</head>
+<body>
+    <div class="container">
+        <h1>{{ title }}</h1>
+        <p><strong>Date and Time:</strong> {{ datetime.strftime('%Y-%m-%d %H:%M:%S') }}</p>
+        <p><strong>Duration:</strong> {{ length }} minutes</p>
+        <h2>Summary</h2>
+        <p>{{ summary }}</p>
+    </div>
+</body>
+</html>

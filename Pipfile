@@ -12,6 +12,8 @@ reloadium = "*"
 speechrecognition = "*"
 pydub = "*"
 openai = "*"
+flask-sqlalchemy = "*"
+pytz = "*"
 
 [dev-packages]
 
