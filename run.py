@@ -147,6 +147,8 @@ page = """
     </div>
 </div>
 
+<|Begin|button|on_action=button_pressed|class_name=plain|>
+
 <div style="display: flex; justify-content: center; align-items: center; height: 100vh">
     <div style="display: flex; justify-content: center; align-items: center; width: 1100px; padding: 20px; gap: 50px;">
         <p>Powered by Google Cloud API, Hear2Learn offers real-time listening and recording, complemented by an audio file backup. Questions are generated through two innovative methods: NLP analysis for core topics combined with web scraping for problem-solving, and AI integration with ChatGPT for quick, efficient question generation — with safeguards against inaccuracies.</p>
@@ -166,8 +168,6 @@ page = """
         <img src="http://127.0.0.1:5000/static/images/teacher.jpg" width="400px"/>
     </div>
 </div>
-
-<|Begin|button|on_action=button_pressed|class_name=plain|>
 """
 
 gui = Gui(page=page , flask=app)
