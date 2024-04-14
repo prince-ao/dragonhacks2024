@@ -22,8 +22,9 @@
         }
     </style>
 </head>
-<body>
-    <div class="container">
+<body class="font-sans animated-background bg-gray-100">
+
+<div class="container">
         <a href='/lectures'>
             <button>back</button>
         </a>
@@ -52,5 +53,17 @@
                     </button>
                 </div>
     </div>
+
+    <script>
+        function formatDuration(totalMinutes) {
+            const totalSeconds = Math.round(totalMinutes * 60);
+            const hours = Math.floor(totalSeconds / 3600);
+            const minutes = Math.floor((totalSeconds % 3600) / 60);
+            const seconds = totalSeconds % 60;
+            return `${hours} hour(s) ${minutes} minute(s) ${seconds} second(s)`;
+        }
+
+        document.getElementById('durationDisplay').innerText += formatDuration({{ length }});
+    </script>
 </body>
 </html>

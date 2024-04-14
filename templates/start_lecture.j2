@@ -10,66 +10,48 @@
     <script src="/static/js/script.js" defer></script>
     <script src="/static/js/init.js" defer></script>
     <style>
-        body { 
-            position: relative; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            background-color: #f3f4f6; /* light gray background */
-            margin: 0; /* remove default margin */
+        @keyframes moveDots {
+            0% {
+                background-position: 0px;
+            }
+            100% {
+                background-position: 50px 0px; /* Horizontal movement */
+            }
         }
-        canvas {
-            position: absolute;
-            top: 0;
-            left: 0;
-            pointer-events: none;
+
+        .animated-background {
+            background-image: radial-gradient(circle, #4a5568 10%, transparent 10%); /* Smaller dots */
+            background-size: 20px 20px; /* Closer spacing */
+            animation: moveDots 20s linear infinite; /* Faster movement */
         }
-        .button-container {
-            position: absolute;
-            top: 20px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 10;
-        }
-        .record-button {
-            position: absolute;
-            top: 60px; /* adjust top position as needed */
-            right: 20px; /* align to the right */
-            z-index: 10;
-        }
-        .container {
-            width: 70%; /* adjust width as needed */
-            max-width: 600px; /* set max-width for responsiveness */
-            background-color: #ffffff; /* white background */
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* shadow effect */
-            padding: 20px; /* add padding for content */
-            border-radius: 10px; /* rounded corners */
-            margin-top: 20px; /* space between buttons and container */
-        }
-        .logo {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 225px; /* Adjust size as needed */
-            height: auto;
+
+        .content-container {
+            background-color: rgba(255, 255, 255, 0.95); /* Slightly transparent white */
+            backdrop-filter: blur(5px); /* Soft blur effect */
         }
     </style>
 </head>
-<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0">
+<body class="flex flex-col items-center justify-center h-screen bg-gray-100 m-0 animated-background">
     <!-- Logo -->
     <img src="static/images/logo.png" alt="Logo" class="absolute top-5 left-5 z-10 w-56 h-auto">
-    
-    <h1 id="title"></h1>
-    <button id="done-btn">Done</button>
 
-    <!-- Large white box container -->
-    <div class="container">
-        <!-- Your content here -->
+    <!-- title to be centered at top of screen above text box -->
+    <h1 id="title" class="text-xl font-bold absolute top-0 left-1/2 transform -translate-x-1/2 pt-4">Title</h1>
+
+    <!-- Long sheet of paper for plain text -->
+    <div class="absolute top-1/2 left-1/2 w-2/3 h-2/3 bg-white shadow-xl transform -translate-x-1/2 -translate-y-1/2 p-8 overflow-auto z-5 content-container">
         <p id="audio-text"></p>
-        <canvas id="particleCanvas"></canvas>
-        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold p-4 rounded-full w-16 h-16 flex items-center justify-center focus:outline-none">
+    </div>
+
+    <!-- Controls Container at the bottom center -->
+    <div class="flex items-center justify-center absolute bottom-5 left-1/2 transform -translate-x-1/2 z-10">
+        <!-- Play/Pause button -->
+        <button id="playPauseBtn" class="bg-red-500 hover:bg-red-700 text-white font-bold rounded-full focus:outline-none mx-2 w-12 h-12 flex items-center justify-center">
             <i class="fas fa-play"></i>
+        </button>
+        <!-- Done button -->
+        <button id="done-btn" class="bg-blue-500 hover:bg-blue-700 text-white font-bold rounded-full focus:outline-none mx-2 w-12 h-12 flex items-center justify-center">
+            Done
         </button>
     </div>
 
