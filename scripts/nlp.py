@@ -57,6 +57,7 @@ class Hear2Learn:
         """
         
         self.quiz_instruction = """Task: Generate a quiz with 10 to 15 questions on the topics provided. Generate the response in json format with {"question": quesiton1, "options": [option1, option2, option3, option4], "answer": "anser1"}"""
+        self.flashcard_instruction = """Task: Generate 5 flashcards based on the summary provided. Generate the response as a list of json format with {"front": "front1", "back": "back1"}"""
         
     def generate_app_config(self, temperature=0.):
         config={
@@ -90,6 +91,23 @@ class Hear2Learn:
         # summaries = self.format_summaries(summaries)
         
         return summaries
+    
+    def generate_flashcards(self, summary):
+        prompt = f'{self.flashcard_instruction}\n + Summary: {summary}'
+
+        response = client.chat.completions.create(
+            model="gpt-3.5-turbo",
+            messages=[
+                {"role": "system", "content": "You are a helpful assistant."},
+                {"role": "user", "content": prompt}
+            ]
+        )
+
+        flashcards = response.choices[0].message.content
+
+        return flashcards
+
+
     
     def generate_quiz(self, context):
         self.app.add(context)
@@ -192,4 +210,6 @@ Now the next variable that relates to factors that influence learning and memory
 
 So in summary as we see here in the last few minutes is that there’s a variety of different factors that influence memory. Each of these factors is extremely important and ones that you should remember. In the next section, we’re going to begin to examine some early theories of memory and how those theories work.""")
 
-    print(result)
+    flashcards = h.generate_flashcards(result)
+
+    print(flashcards)

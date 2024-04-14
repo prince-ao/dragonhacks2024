@@ -103,7 +103,8 @@ def signup():
 
 @app.get('/lectures')
 def lectures():
-    return render_template('lectures.j2')
+    lectures = Lecture.query.all()
+    return render_template('lectures.j2', lectures=lectures)
 
 api = Api(app, version='1.0', title='HearToLearn.tech', description='API for HearToLearn.tech', prefix='/api/v1', doc='/docs')
 api.add_namespace(audio_handle_ns)
