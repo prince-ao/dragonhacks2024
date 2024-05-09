@@ -28,7 +28,7 @@ def convert_ogg_to_wav(ogg_data):
 def process_audio(data):
     text = ""
     try:
-        wav_audio = convert_webm_to_wav(data)
+        wav_audio = convert_ogg_to_wav(data)
 
         with sr.AudioFile(wav_audio) as source:
             audio = r.record(source)
