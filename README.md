@@ -1,5 +1,5 @@
 
-# Hear2Learn (Won Education Track 🏆)
+# Hear2Learn (Won Education Track at DragonHacks 2024 🏆)
 
 Hear2Learn is an innovative accessible auditory  platform designed to increase your studying efficiency. It transcribes your lectures in real time so if you get distracted and miss something or mishear something you can catch up easily. After a lecture is recorded we summarize the lecture's core ideas and points. After that is done we create flash cards on the topic for more easily digestable information that can be repeated. We try to use the presenter's own words whenever possible to not generalize an idea since methodology can be taught differently.
 
